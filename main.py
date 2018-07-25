@@ -5,14 +5,15 @@ from readjson import *
 from filtre import *
 from rpyprocess import *
 from preprocess import *
+from timecontrol import *
 
 import os
 
 def main():
 	
-	args = get_commandline()
+	#args = get_commandline()
 	
-	check_allfiles(args.input)
+	#check_allfiles(args.input)
 	"""
 	os.chdir(args.input)
 	
@@ -22,6 +23,8 @@ def main():
 	
 	rpy_process_all(raw_list_dict)
 	"""
+
+	timecontrol()
 
 
 if __name__ == "__main__":

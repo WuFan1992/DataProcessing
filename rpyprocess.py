@@ -7,11 +7,6 @@ from rpy2.robjects.packages import importr
 
 def rpy_process(data_e):
 	
-	#with open('../algo_R.R','r') as f:
-	#	string = f.read()
-	#rpy_func = STAP(string, "algo_R")
-
-	#output_data = rpy_func.r_data_processing(robj.IntVector(data_e))
 
 	rpy_module = importr('smile')
 	output_data = rpy_module.r_data_processing(robj.IntVector(data_e))
@@ -33,6 +28,17 @@ def show_info(filename, output_data):
 	"""Show the mean/min/max value in the terminal"""
 
 	print ("Filenmae : %s  mean value : %f   max value : %f  min value:  %f" % (filename, output_data[0],output_data[1], output_data[2]))
+
+
+
+
+def r_algo_one():
+	print("This is R 1 algo")
+
+def r_algo_ten():
+	print("This is R 10 algo")
+
+
 		
 	
 
