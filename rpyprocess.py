@@ -3,6 +3,10 @@
 import rpy2.robjects as robj
 from rpy2.robjects.packages import STAP
 from rpy2.robjects.packages import importr
+import threading
+
+
+threadLock = threading.Lock()
 
 
 def rpy_process(data_e):
