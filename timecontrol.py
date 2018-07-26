@@ -10,6 +10,7 @@ from rpyprocess import r_algo_one, r_algo_ten
 class BasicThread(threading.Thread):
 
 	receive_enough_data = True
+	num_excute_one = 0
 	
 	def __init__(self):
 		pass
@@ -25,7 +26,10 @@ class Thread(BasicThread):
 
 
 	def run(self):
-		r_timecontrol(self.r_time)
+		if self.r_time ==  1:
+			r_timecontrol_one()
+		elif self.r_time == 10:
+			r_timecontrol_ten()
 			
 
 
@@ -42,17 +46,24 @@ class ThreadManage(BasicThread):
 
 
 
-def r_timecontrol(r_time):
+def r_timecontrol_one():
+	
 	while BasicThread.receive_enough_data:
-		if r_time == 1:
-			r_algo_one()
-			time.sleep(1)
-		elif r_time == 10:
+		r_algo_one()
+		if BasicThread.num_excute_one !=10:
+			BasicThread.num_excute_one +=1
+		else:
+			BasicThread.num_excute_one = 0
+		time.sleep(1)
+		
+
+def r_timecontrol_ten():
+
+	while BasicThread.receive_enough_data:
+		if BasicThread.num_excute_one == 10:
 			r_algo_ten()
 			time.sleep(10)
-		else:
-			return
-		
+			
 		
 def timecontrol():
 	r_thread = ThreadManage()
