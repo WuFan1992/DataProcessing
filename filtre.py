@@ -5,36 +5,68 @@ import shutil
 import os 
 
 
-def filtre_data(data):
+def filtre_data(data,config_NESW_list):
 	""" Filtre the data in one file.
 
         Args:
              data: The container which stock all the json data
 	     
+	""" 
+
+	afterfiltering_dict = create_afterfiltering_dict(config_NESW_list)
+	
+	for data_each in data:
+		ret = is_data_correspond_configfile(data_each,config_NESW_list)
+		if ret!=None:
+			data_frames = data_each["frames"]
+			for data_frame in data_frames:
+				if is_data_correspond_filtering(data_frame["trigger"]):
+					afterfiltering_dict[ret].append({"qu_Date":data_frame["time"], "qu_MeaNorm":data_frame["comp"]})
+
+	return afterfiltering_dict
+			
+			
+
+
+def create_afterfiltering_dict(config_NESW_list):
+	"""This function is used to save all the filtering
+           data in a list of dictionary		
+	"""
+	
+	afterfiltering_dict = {}
+	for section_config in config_NESW_list:
+		afterfiltering_dict[section_config["section_name"]] =[]
+
+	return afterfiltering_dict
+		
+
+
+
+def is_data_correspond_configfile(data_each,config_NESW_list):
+	"""This function is used to compare the data with
+	   the filtering condition written in the
+	   configuration file	  	
+	"""
+	
+	for section_config in config_NESW_list:
+		#print ("dau_idx in section config is %d and data is %d \n" % (section_config["dau_idx"],data_each["dau_idx"]))
+		if section_config["dau_idx"] == data_each["dau_idx"] and section_config["idx"] == data_each["idx"] and section_config["type"] == data_each["type"]:
+			return section_config["section_name"]
+	return None
+
+
+def is_data_correspond_filtering(data_frame_trigger):
+	"""This function is used to comparer the data with
+	   the general filtering condition	
 	"""
 
-	# New list to save all the raw frame 
+	if data_frame_trigger != 0:
+		return True
+	else:
+		return False
 
-	onefile_data_list = []
 	
- 
-	for data_each in data:
-		if data_each["type"] == "OPTIC":
-			data_frames = data_each["frames"]
-			for data_each_frame in data_frames:
-				if data_each_frame["trigger"] !=0:
-					oneline_dict = data_each_frame.copy()
-					oneline_dict["action"] = data_each["action"]
-					oneline_dict["SN"] = data_each["SN"]
-					oneline_dict["dau_idx"] = data_each["dau_idx"]
-					oneline_dict["idx"] = data_each["idx"]
-					oneline_dict["type"] = data_each["type"]
-					onefile_dict_list.append(oneline_dict)
-				   
-
-	return onefile_dict_list
-
-
+		   
 
 def filtre_datas(filename_data_dict):
 	"""Filtre the data in all files"""
@@ -49,11 +81,5 @@ def filtre_datas(filename_data_dict):
 	return allfile_data_list
 
 
-
-
-
-def select_one_minute_data(files_data_list):
-	"""Select the data of one minute"""
-	pass
 		
 

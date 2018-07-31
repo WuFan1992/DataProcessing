@@ -14,9 +14,14 @@ def main():
 	
 	args = get_commandline()
 
-	mydata = read_fileconfig(args.input)
+	config_data = read_fileconfig(args.input)
 
-	print(mydata)
+	data_e = read_data("./0025061978_2018-07-20-16-25-54-138602.json")
+
+	afterfiltering_dict = filtre_data(data_e,config_data)
+
+	print(len(afterfiltering_dict["CSection_W"]))
+	
 	#output_data = rpy_process(args.input)
 
 	#csv_name = "mycsv.csv"
