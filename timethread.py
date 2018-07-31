@@ -10,6 +10,8 @@ class BasicThread(threading.Thread):
 	num_excute_one = 0
 	threadEvent = threading.Event()
 
+	cond_enough_data = threading.Condition()
+
 	def __init__(self):
 		pass
 

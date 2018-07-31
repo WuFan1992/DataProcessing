@@ -6,14 +6,15 @@ from rpy2.robjects.packages import importr
 import threading
 
 
-threadLock = threading.Lock()
-
-
-def rpy_process(data_e):
+def rpy_process(config_file):
 	
 
-	rpy_module = importr('smile')
-	output_data = rpy_module.r_data_processing(robj.IntVector(data_e))
+	rpy_module = importr('cocalculateur')
+	loadjson_module = importr('jsonlite')
+	
+	json_data = loadjson_module.fromJSON(txt = './input_f01.json',flatten=True)
+	config_data = loadjson_module.fromJSON(txt = config_file ,flatten=True)
+	output_data = rpy_module.f_01(json_data,config_data)
 
 	return output_data
 

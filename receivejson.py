@@ -12,13 +12,6 @@ class JsonReceive(BasicThread):
 
 	def receive_json(self):
 		
-		
-		#time.sleep(0.5)
-		#print ("json file arrive 1")
-		#time.sleep(0.5)
-		#print ("json file arrive 2")
-		#BasicThread.threadEvent.set()
-		
 		while True:
 			self.receive_times +=1
 			time.sleep(JSON_MINUTES)
@@ -26,12 +19,30 @@ class JsonReceive(BasicThread):
 			if self.receive_times == 2:
 				self.receive_times = 0
 				BasicThread.threadEvent.set()
+				BasicThread.threadEvent.clear()
+						
 			
-				
-			
-
 	def run(self):
 		self.receive_json()
+
+
+	def receive_json_file():
+	
+		if receive_one_json_file():
+			self.receive_times +=1
+			if self.receive_times == 2:
+				self.receive_times = 0
+				BasicThread.cond_enough_data.notify()
+				BasicThread.cond_enough_data.release()
+				
+				
+				
+							
+
+
+	def receive_one_json_file():
+
+		return True
 
 			
 			

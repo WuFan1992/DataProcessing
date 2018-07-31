@@ -6,12 +6,19 @@ from filtre import *
 from rpyprocess import *
 from preprocess import *
 from timecontrol import *
+from writecsv import *
 
 import os
 
 def main():
 	
-	#args = get_commandline()
+	args = get_commandline()
+
+	output_data = rpy_process(args.input)
+
+	csv_name = "mycsv.csv"
+
+	r1_output_writecsv(output_data[0],csv_name)
 	
 	#check_allfiles(args.input)
 	"""
@@ -24,7 +31,7 @@ def main():
 	rpy_process_all(raw_list_dict)
 	"""
 
-	timecontrol()
+	#timecontrol()
 
 
 if __name__ == "__main__":
