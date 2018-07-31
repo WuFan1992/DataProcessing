@@ -14,11 +14,14 @@ def main():
 	
 	args = get_commandline()
 
-	output_data = rpy_process(args.input)
+	mydata = read_fileconfig(args.input)
 
-	csv_name = "mycsv.csv"
+	print(mydata)
+	#output_data = rpy_process(args.input)
 
-	r1_output_writecsv(output_data[0],csv_name)
+	#csv_name = "mycsv.csv"
+
+	#r1_output_writecsv(output_data[0],csv_name)
 	
 	#check_allfiles(args.input)
 	"""

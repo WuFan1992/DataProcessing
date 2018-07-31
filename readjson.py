@@ -49,21 +49,38 @@ def read_datas(directory):
 	return filename_data_dict
 
 
+### Read Configuration File ### 
+
+
 def read_fileconfig(filename):
-	"""Read the configuration file and retrive the
-	    
+	"""Read the configuration file 
 	"""   
 
 	with open(filename) as f:
 		config_data = json.load(f)
 	NESW_dict_list = []
-
-	NESW_dict_list.append(config_data["CSection_N"]["INFO_ACQ"])
-	NESW_dict_list.append(config_data["CSection_E"]["INFO_ACQ"])
-	NESW_dict_list.append(config_data["CSection_S"]["INFO_ACQ"])
-	NESW_dict_list.append(config_data["CSection_W"]["INFO_ACQ"])
-
+	
+	NESW_dict_list.append(add_NESW_list(config_data,"CSection_N"))
+	NESW_dict_list.append(add_NESW_list(config_data,"CSection_E"))
+	NESW_dict_list.append(add_NESW_list(config_data,"CSection_S"))
+	NESW_dict_list.append(add_NESW_list(config_data,"CSection_W"))
+	
 	return NESW_dict_list
+
+
+def add_NESW_list(config_data,section_name):
+	""" Retrive the essentiel data in the
+	    configuration file 	
+	"""
+
+	NESW_dict= {}
+	for key in config_data[section_name]["INFO_ACQ"]:
+		NESW_dict[key]=config_data[section_name]["INFO_ACQ"][key][0]
+	NESW_dict["section_name"] = section_name
+	return NESW_dict
+	
+
+	
 	
 		
 

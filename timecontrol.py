@@ -7,6 +7,8 @@ from  receivejson import *
 
 from rpyprocess import r_algo_one, r_algo_ten
 
+from writecsv import *
+
 class Thread(BasicThread):
 	""" This class is used to manage the one threading"""
 
@@ -40,12 +42,13 @@ class ThreadManage(BasicThread):
 		self.r_ten_thread.start()
 		
 
-def r_timecontrol_one():
+def r_timecontrol_one(output_r1,csv_name):
 
 	BasicThread.threadEvent.wait()
 	while BasicThread.receive_enough_data:
 		
-		r_algo_one()
+		#r_algo_one()
+		r1_output_writecsv(output_r1, csv_name)
 		if BasicThread.num_excute_one !=10:
 			BasicThread.num_excute_one +=1
 		else:
