@@ -7,11 +7,13 @@ from rpyprocess import *
 from preprocess import *
 from timecontrol import *
 from writecsv import *
+from sync import *
 
 import os
 
 def main():
 	
+	"""	
 	args = get_commandline()
 
 	config_data = read_fileconfig(args.input)
@@ -20,8 +22,7 @@ def main():
 
 	afterfiltering_dict = filtre_data(data_e,config_data)
 
-	print(len(afterfiltering_dict["CSection_W"]))
-	
+	"""
 	#output_data = rpy_process(args.input)
 
 	#csv_name = "mycsv.csv"
@@ -40,6 +41,12 @@ def main():
 	"""
 
 	#timecontrol()
+
+	X = [1,4,8]
+	Y = [7,2,5]
+
+	sync_data(X,Y)
+
 
 
 if __name__ == "__main__":
