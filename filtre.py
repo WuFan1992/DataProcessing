@@ -14,7 +14,7 @@ def filtre_data(data,config_NESW_list):
 	""" 
 
 	afterfiltering_dict = create_afterfiltering_dict(config_NESW_list)
-	
+
 	for data_each in data:
 		ret = is_data_correspond_configfile(data_each,config_NESW_list)
 		if ret!=None:
@@ -22,7 +22,6 @@ def filtre_data(data,config_NESW_list):
 			for data_frame in data_frames:
 				if is_data_correspond_filtering(data_frame["trigger"]):
 					afterfiltering_dict[ret].append({"qu_Date":data_frame["time"], "qu_MeaNorm":data_frame["comp"]})
-
 	return afterfiltering_dict
 			
 			
@@ -32,10 +31,9 @@ def create_afterfiltering_dict(config_NESW_list):
 	"""This function is used to save all the filtering
            data in a list of dictionary		
 	"""
-	
 	afterfiltering_dict = {}
 	for section_config in config_NESW_list:
-		afterfiltering_dict[section_config["section_name"]] =[]
+		afterfiltering_dict[section_config["section_name"]] = []
 
 	return afterfiltering_dict
 		
@@ -49,7 +47,6 @@ def is_data_correspond_configfile(data_each,config_NESW_list):
 	"""
 	
 	for section_config in config_NESW_list:
-		#print ("dau_idx in section config is %d and data is %d \n" % (section_config["dau_idx"],data_each["dau_idx"]))
 		if section_config["dau_idx"] == data_each["dau_idx"] and section_config["idx"] == data_each["idx"] and section_config["type"] == data_each["type"]:
 			return section_config["section_name"]
 	return None

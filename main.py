@@ -8,21 +8,24 @@ from preprocess import *
 from timecontrol import *
 from writecsv import *
 from sync import *
+from presync import *
 
 import os
 
 def main():
 	
-	"""	
+		
 	args = get_commandline()
 
 	config_data = read_fileconfig(args.input)
 
 	data_e = read_data("./0025061978_2018-07-20-16-25-54-138602.json")
+	
+	afterfiltering_dict= filtre_data(data_e,config_data)
 
-	afterfiltering_dict = filtre_data(data_e,config_data)
+	#print (select_least_timestamp(afterfiltering_dict))
 
-	"""
+
 	#output_data = rpy_process(args.input)
 
 	#csv_name = "mycsv.csv"
@@ -41,11 +44,6 @@ def main():
 	"""
 
 	#timecontrol()
-
-	X = [1,4,8]
-	Y = [7,2,5]
-
-	sync_data(X,Y)
 
 
 
