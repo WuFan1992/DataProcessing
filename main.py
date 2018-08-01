@@ -21,7 +21,8 @@ def main():
 
 	data_e = read_data("./0025061978_2018-07-20-16-25-54-138602.json")
 	
-	afterfiltering_dict= filtre_data(data_e,config_data)
+	afterfiltering_dict = filtre_data(data_e,config_data)
+
 
 	#print (select_least_timestamp(afterfiltering_dict))
 

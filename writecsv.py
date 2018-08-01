@@ -33,4 +33,28 @@ def r1_output_writecsv(output_r1,csv_name):
 	return
 
 
+def writecsv(output,csv_name):
+
+	csv_file = open(csv_name, "w")
+
+	#Write the header of the csv file
+	csv_file.write("qu_Date" + SEPARATOR +
+		      "qu_MeaNorm" + SEPARATOR + "\n")
+
+	#Write the csv data
+	
+	for key in output:
+		csv_file.write("Smile         "+key+"               Smile    \n")
+		for dict_e in output[key]:
+			csv_file.write(str(dict_e["qu_Date"]) + SEPARATOR + str(dict_e["qu_MeaNorm"])+ "\n")
+		csv_file.write("\n")
+			
+	csv_file.close()
+
+
+	return
+
+	
+
+
 	
