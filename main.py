@@ -23,12 +23,9 @@ def main():
 	
 	afterfiltering_dict = filtre_data(data_e,config_data)
 
-	t_stamps = sort_timestamps(afterfiltering_dict)
+	sync_ret = sync_process(afterfiltering_dict)
 
-	X =[1,5,9,7,14]
-	Y =[2,47,3]
-
-	print(sync_data(X,Y))
+	print(sync_ret["CSection_E"])	
 
 
 	#output_data = rpy_process(args.input)

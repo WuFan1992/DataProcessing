@@ -54,6 +54,11 @@ def writecsv(output,csv_name):
 
 	return
 
+
+def writecsv_sync(sync_ret):
+
+	pass
+
 	
 
 

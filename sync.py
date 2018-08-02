@@ -105,22 +105,42 @@ def sync_process(t_mes_list):
 	I_W = sync_data(t_stamps["CSection_W"],t_stamps[t_ref_name])
 
 	# Replace 0 to 1 for I1 TO I4
-	I_N = replace(I_N)
-	I_E = replace(I_E)
-	I_S = replace(I_S)
-	I_W = replace(I_W)
+	I_N = replace_zero(I_N)
+	I_E = replace_zero(I_E)
+	I_S = replace_zero(I_S)
+	I_W = replace_zero(I_W)
 
+	# Extract X1 to X4 with the row given in I1 to I4
+	X_N = extract_X_by_I(t_mes_list["CSection_N"],I_N)
+	X_E = extract_X_by_I(t_mes_list["CSection_E"],I_E)
+	X_S = extract_X_by_I(t_mes_list["CSection_S"],I_S)
+	X_W = extract_X_by_I(t_mes_list["CSection_W"],I_N)
 	
-	
+	# Return data with the form of dictionary 
+	sync_ret = {}
+	sync_ret["CSection_N"] = X_N
+	sync_ret["CSection_E"] = X_E
+	sync_ret["CSection_S"] = X_S
+	sync_ret["CSection_W"] = X_W
 
-
-
+	return sync_ret
 
 
 def replace_zero(I):
 	"""Replace the value 0 to 1 in I1 to I4
 	"""
 	return [x if x!=0 else 1 for x in I ]
+
+def extract_X_by_I(X,I):
+	"""Extract X with the row given in I
+	"""
+	X_ret = []
+	I = [i-1 for i in I]
+	for i in I:
+		X_ret.append(X[i])
+	return X_ret
+	
+	
 	
 	
 
