@@ -6,13 +6,13 @@ from rpy2.robjects.packages import importr
 import threading
 
 
-def rpy_process(config_file):
+def rpy_process(config_file,json_data):
 	
 
 	rpy_module = importr('cocalculateur')
 	loadjson_module = importr('jsonlite')
 	
-	json_data = loadjson_module.fromJSON(txt = './input_f01.json',flatten=True)
+	#json_data = loadjson_module.fromJSON(txt = './input_f01.json',flatten=True)
 	config_data = loadjson_module.fromJSON(txt = config_file ,flatten=True)
 	output_data = rpy_module.f_01(json_data,config_data)
 

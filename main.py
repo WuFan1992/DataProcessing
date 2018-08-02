@@ -9,12 +9,17 @@ from timecontrol import *
 from writecsv import *
 from sync import *
 from presync import *
+from prerpy import *
+
+
+import rpy2.rinterface as rinterface 
 
 import os
 
 def main():
 	
-		
+	
+	# Here is the filtering and sync function		
 	args = get_commandline()
 
 	config_data = read_fileconfig(args.input)
@@ -25,13 +30,17 @@ def main():
 
 	sync_ret = sync_process(afterfiltering_dict)
 
-	print(sync_ret["CSection_E"])	
+	seperate_t_mes(sync_ret)
+	
+	
+	#output_data = rpy_process(args.input,pre_ret)
+
+	#print(output_data)
 
 
-	#output_data = rpy_process(args.input)
-
+	"""
 	#csv_name = "mycsv.csv"
-
+	"""
 	#r1_output_writecsv(output_data[0],csv_name)
 	
 	#check_allfiles(args.input)
