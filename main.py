@@ -23,9 +23,9 @@ def main():
 	
 	afterfiltering_dict = filtre_data(data_e,config_data)
 
+	t_stamps = sort_timestamps(afterfiltering_dict)
 
-	#print (select_least_timestamp(afterfiltering_dict))
-
+	print(get_least_timestamp(t_stamps))
 
 	#output_data = rpy_process(args.input)
 

@@ -81,7 +81,15 @@ def select_no_zero(basic_array,ref_array):
 		if ref_array[i] !=0:
 			list_after_select.append(basic_array[i])
 	return list_after_select
-			
+
+
+
+
+
+
+
+
+
 
 	
 		
