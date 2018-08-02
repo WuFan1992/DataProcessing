@@ -2,6 +2,7 @@
 
 
 import numpy as np
+from presync import *
 
 
 def sync_data(X, Y):
@@ -26,26 +27,30 @@ def sync_data(X, Y):
 	# OrdRef <- Ref[OrdXY]
 	ordRef = arrange_by_order(Ref,ordXY)
 
+	
 	# NumX <- cusum(OrdRef == 0)
 	NumX = count_zero(ordRef)
-
+	
+	
 	# ItmX <- NumX[OrdRef != 0]
 	ItmX = select_no_zero(NumX,ordRef)
 
+	
+	
 	# Itm <- ItmX[OrdY]
 	ItmX = arrange_by_order(ItmX,ordY)
+	
 
 	# ResY <- ItmX
 	ResY = ItmX
 
 	# ResY[ItmX != 0] <- OrdX[ItmX]
 	ResY = select_no_zero(ResY,ItmX)
+	ItmX = [x-1 for x in ItmX]
 	tmp_array = arrange_by_order(ordX,ItmX)
-	ResY = tmp_array
+	ResY = [x+1 for x in tmp_array]
 
 	return ResY
-
-
 
 
 def arrange_by_order(basic_array, order_array):
@@ -83,9 +88,41 @@ def select_no_zero(basic_array,ref_array):
 	return list_after_select
 
 
+def sync_process(t_mes_list):
+	"""Complet synchronisation process
+	"""
+
+	# Define T1 to T4 vectors of timestamps
+	t_stamps = sort_timestamps(t_mes_list)
+
+	# Define Tref the least value of T1 to T4
+	t_ref_name = get_least_timestamp(t_stamps)
+
+	# Define I1 TO I4
+	I_N = sync_data(t_stamps["CSection_N"],t_stamps[t_ref_name])
+	I_E = sync_data(t_stamps["CSection_E"],t_stamps[t_ref_name])
+	I_S = sync_data(t_stamps["CSection_S"],t_stamps[t_ref_name])
+	I_W = sync_data(t_stamps["CSection_W"],t_stamps[t_ref_name])
+
+	# Replace 0 to 1 for I1 TO I4
+	I_N = replace(I_N)
+	I_E = replace(I_E)
+	I_S = replace(I_S)
+	I_W = replace(I_W)
+
+	
+	
 
 
 
+
+
+def replace_zero(I):
+	"""Replace the value 0 to 1 in I1 to I4
+	"""
+	return [x if x!=0 else 1 for x in I ]
+	
+	
 
 
 
