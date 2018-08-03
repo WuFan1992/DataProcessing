@@ -9,6 +9,7 @@ def get_commandline():
 
 	parser = argparse.ArgumentParser(description="Test json to csv")
 	parser.add_argument('--input', help='The input json directory')
+	parser.add_argument('--config', help='The configuration file')
 	args = parser.parse_args()
 	return args
 

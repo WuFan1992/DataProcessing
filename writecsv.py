@@ -55,9 +55,37 @@ def writecsv(output,csv_name):
 	return
 
 
-def writecsv_sync(sync_ret):
+def writecsv_sync(output):
 
-	pass
+	
+	for key in output:
+		csv_file = open(key+"csv.csv", "w")
+		write_header_filtrage(csv_file)
+		for dict_e in output[key]:
+			csv_file.write(str(dict_e["qu_Date"]) + SEPARATOR + str(dict_e["qu_MeaNorm"])+ "\n")
+			
+		csv_file.close()
+
+
+	return
+
+
+def write_header_filtrage(csv_file):
+	"""Write the header and the rule of filtering
+	"""
+
+	csv_file.write("Fitrage par (1)trigger !=0 \n")
+	csv_file.write("(2) trier type= OPTIC\n")
+	csv_file.write("(3) trier dau_idx = 3\n")
+	csv_file.write("(4) trier idx = 1 2 3 4\n")
+	
+	
+
+	csv_file.write("qu_Date" + SEPARATOR +
+		      "qu_MeaNorm" + SEPARATOR + "\n")
+
+
+
 
 	
 

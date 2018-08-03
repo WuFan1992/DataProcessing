@@ -12,13 +12,16 @@ from presync import *
 from prerpy import *
 
 
-import rpy2.rinterface as rinterface 
+import rpy2.rinterface as ri
+from rpy2.robjects.vectors import IntVector
+from rpy2.robjects import Vector
+import rpy2.robjects as robj
 
 import os
 
 def main():
 	
-	
+	"""
 	# Here is the filtering and sync function		
 	args = get_commandline()
 
@@ -30,12 +33,24 @@ def main():
 
 	sync_ret = sync_process(afterfiltering_dict)
 
-	seperate_t_mes(sync_ret)
+	pre_ret = seperate_t_mes(sync_ret)
 	
-	
-	#output_data = rpy_process(args.input,pre_ret)
+        """
 
-	#print(output_data)
+	args = get_commandline()
+	output_data = rpy_process(args.config)
+	r1_output_writecsv(output_data[0],"csvR1.csv")
+
+	lst = []
+	for i in range(10):
+		lst.append(output_data[1])
+	dataf = Vector(lst)
+		
+	output_data_r10 = rpy_process_r10(args.config,dataf)
+
+	print(output_data_r10)
+	
+	
 
 
 	"""
