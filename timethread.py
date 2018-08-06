@@ -8,9 +8,9 @@ class BasicThread(threading.Thread):
 
 	receive_enough_data = True
 	num_excute_one = 0
-	threadEvent = threading.Event()
+	r1_mecan_data = []
+	cond = threading.Condition()
 
-	cond_enough_data = threading.Condition()
 
 	def __init__(self):
 		pass

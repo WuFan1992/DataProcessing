@@ -49,9 +49,6 @@ def main():
 	output_data_r10 = rpy_process_r10(args.config,dataf)
 
 	print(output_data_r10)
-	
-	
-
 
 	"""
 	#csv_name = "mycsv.csv"
