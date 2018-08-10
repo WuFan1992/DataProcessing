@@ -17,15 +17,24 @@ from rpy2.robjects.vectors import IntVector
 from rpy2.robjects import Vector
 import rpy2.robjects as robj
 
+
+
+import pandas as pd
+
+from rpy2.robjects import pandas2ri
+
+from rpy2.robjects.packages import importr
+
+
+
 import os
 
 def main():
 	
-	"""
-	# Here is the filtering and sync function		
+			
 	args = get_commandline()
 
-	config_data = read_fileconfig(args.input)
+	config_data = read_fileconfig(args.config)
 
 	data_e = read_data("./0025061978_2018-07-20-16-25-54-138602.json")
 	
@@ -33,10 +42,15 @@ def main():
 
 	sync_ret = sync_process(afterfiltering_dict)
 
-	pre_ret = seperate_t_mes(sync_ret)
-	
-        """
+	writecsv_sync(sync_ret)
 
+	data_obj = create_dataframes(sync_ret)
+
+	output_data = rpy_process(data_obj, args.config)
+
+	print (output_data)
+
+	"""
 	args = get_commandline()
 	output_data = rpy_process(args.config)
 	r1_output_writecsv(output_data[0],"csvR1.csv")
@@ -50,6 +64,7 @@ def main():
 
 	print(output_data_r10)
 
+	"""
 	"""
 	#csv_name = "mycsv.csv"
 	"""

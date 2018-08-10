@@ -117,12 +117,13 @@ def sync_process(t_mes_list):
 	X_W = extract_X_by_I(t_mes_list["CSection_W"],I_N)
 	
 	# Return data with the form of dictionary 
+
 	sync_ret = {}
 	sync_ret["CSection_N"] = X_N
 	sync_ret["CSection_E"] = X_E
 	sync_ret["CSection_S"] = X_S
 	sync_ret["CSection_W"] = X_W
-
+	
 	return sync_ret
 
 
