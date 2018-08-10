@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 
+"""
+     presync
 
+     Funtion which will be used in the synchronisation
+
+
+"""
 
 
 

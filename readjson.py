@@ -1,5 +1,17 @@
 #!/usr/bin/env python3
 
+"""
+     readjson
+
+     Read json file, including the json data and the json configuration file
+     Read command line 
+
+"""
+
+
+from error import FileTypeError
+from preprocess import is_json
+
 import argparse
 import json
 import os
@@ -14,40 +26,25 @@ def get_commandline():
 	return args
 
 
-
 def read_data(filename):
 	""" Read the data of one file """
 
-	with open(filename) as f:
-		data = json.load(f)
-	data_e = data["dau_array"]
+	try:
+		is_json(filename)
 
-	f.close()
+	except FileTypeError as e:
+		print(" File Type Error\n")
+		print("Excepted Type is %s, But the actual type is %s" %(e.expected_type, e.actual_type))
+
+	else:
+		with open(filename) as f:
+			data = json.load(f)
+		data_e = data["dau_array"]
+
+		f.close()
 	
-	return data_e
+		return data_e
 
-		
-def get_filenames():
-	""" Get all the filenames in the directory"""
-
-	filenames_list = os.listdir()
-	return filenames_list
-
-
-
-def read_datas(directory):
-	"""Read the data of all files"""
-
-	# Get the files names
-	filename_list = get_filenames()
-
-	filename_data_dict = {}
-		
-	for filename in filename_list:
-		data_e = read_data(filename)
-		filename_data_dict[filename] = data_e
-
-	return filename_data_dict
 
 
 ### Read Configuration File ### 

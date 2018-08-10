@@ -1,5 +1,16 @@
 #!/usr/bin/env python3
 
+
+"""
+    receivejson
+
+    For notify the whole system if json arrive 
+
+    ##### Currently Not used #########"
+
+
+"""
+
 from timethread import *
 from const import *
 

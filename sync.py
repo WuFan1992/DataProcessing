@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 
 
+"""
+    sync
+
+    Translation of R algo to python algo
+
+
+"""
+
 import numpy as np
 from presync import *
 

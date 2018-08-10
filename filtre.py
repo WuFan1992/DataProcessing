@@ -1,5 +1,20 @@
 #!/usr/bin/env python3
 
+
+"""
+    filtre
+
+    filtering data according to the below condition :
+
+    1.trigger !=0
+    2.trier type= OPTIC
+    3.trier dau_idx = 3
+    4.trier idx = 1 2 3 4
+
+"""
+
+
+
 import ijson
 import shutil
 import os 

@@ -1,0 +1,28 @@
+Démo pour la chaîne de traitement complet
+Toute la chaîne est composé par 5 parties :
+
+Lecture du json   ----->  Filtrage ------> Synchronisation ----> R1 ------> R10
+
+la chaîne exécute de lecture du json à R1 tous le 1 seconde (au lieu de 1 minute pour accélerer la présentation) et si R1 exécute 10 fois , R10 est lancé.
+
+Ce démo prend que une seule json comme l'entrée et répeter de faire le traitement pour ce fichier
+
+Pour lancer ce programme
+
+taper :
+
+python3 main.py --input 0025061978_2018-07-20-16-25-54-138602.json --config CFGFILE_PROJECT.json
+
+option:
+--input le json pour le traitement
+--config le fichier de configuration
+
+Comme la sortie , vous pouvez trouver 3 répertoires :
+
+output_Sync -----> qui stocke tous les csv qui sortent de la process du synchronisation
+
+output_R1   -----> qui stocke tous les csv qui sortent de la process R1
+
+output_R10   -----> qui stocke tous les csv qui sortent de la process R10
+
+  

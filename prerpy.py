@@ -1,9 +1,23 @@
 #!/usr/bin/env python3
 
 
+"""
+    prerpy
+
+    Create dataframe as the input of R1
+
+    In fact, the output of synchronisation is the python-dictionary object,
+    which is not accepted as the input of R1. So this part is for making 
+    the transformation from python-dictionary to rpy2-R-dataframe,which is 
+    the structure accepted by R1 
+
+"""
+
+
+
 import rpy2.robjects as robj
 import pandas as pd
-
+from rpy2.robjects import pandas2ri
 
 def create_dataframes(sync_ret):
 	"""This function is used to create a whole dataframe
@@ -26,9 +40,6 @@ def create_dataframes(sync_ret):
 
 	return robj.r.data_obj
 
-	
-
-	
 	
 
 def create_one_dataframe(section_list):
