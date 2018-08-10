@@ -14,7 +14,6 @@ def rpy_process(json_data, config_file):
 
 	
 	#json_data_json = loadjson_module.fromJSON(txt = './input_f01.json',flatten=True)
-	#print(json_data_json)
 	config_data = loadjson_module.fromJSON(txt = config_file ,flatten=True)
 	output_data = rpy_module.f_01(json_data,config_data)
 

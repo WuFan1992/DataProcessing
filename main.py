@@ -1,16 +1,9 @@
 #!/usr/bin/env python3
 
 
-from readjson import *
-from filtre import *
-from rpyprocess import *
+from read_filter_sync import *
 from preprocess import *
 from timecontrol import *
-from writecsv import *
-from sync import *
-from presync import *
-from prerpy import *
-
 
 import rpy2.rinterface as ri
 from rpy2.robjects.vectors import IntVector
@@ -31,24 +24,13 @@ import os
 
 def main():
 	
-			
 	args = get_commandline()
-
-	config_data = read_fileconfig(args.config)
-
-	data_e = read_data("./0025061978_2018-07-20-16-25-54-138602.json")
-	
-	afterfiltering_dict = filtre_data(data_e,config_data)
-
-	sync_ret = sync_process(afterfiltering_dict)
-
-	writecsv_sync(sync_ret)
-
-	data_obj = create_dataframes(sync_ret)
+			
+	data_obj = read_filter_sync(args)
 
 	output_data = rpy_process(data_obj, args.config)
 
-	print (output_data)
+	print(output_data)
 
 	"""
 	args = get_commandline()
